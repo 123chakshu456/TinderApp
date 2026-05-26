@@ -12,3 +12,17 @@
 - Create a outlet in your body component
 - Login and Profile component should be rendered with outlet
 - Create a footer component with Body component
+- Create a login page
+- Install Axios
+- CORS- Install CORS in backend => add middleware to with configurations: origin, credentials: true
+- Whenever you are making API calls, so pass axios{withCredentials: true} api true
+- Create a login page
+- Install axios
+- CORS- Install cors in backend => add middleare to with credentials: origin, credentials: true
+- Whenever you are making api call so pass axios => withCredentials : true
+- Install redux toolkit
+- configureStore => Provider => createSlice => add reducer to store
+- Add redux devtools in chrome
+- login and see if your data is coming properly in the store
+- Navbar should update as soon as user logs in
+- Refactor your code and add code to constants file and component file
