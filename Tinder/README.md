@@ -26,3 +26,12 @@
 - login and see if your data is coming properly in the store
 - Navbar should update as soon as user logs in
 - Refactor your code and add code to constants file and component file
+- Dont access other routes without login
+- If token is not present, redirect routes to login page
+- Logout feature
+- Get the feed and add the feed in the store
+- Build the user card on feed
+- Edit profile feature
+- Show toast message on save of profile
+- See all my connections
+- 
