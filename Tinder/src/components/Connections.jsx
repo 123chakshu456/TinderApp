@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { BASE_URL } from "../utils/constants";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,7 +15,7 @@ const Connections = () => {
       });
       dispatch(addConnections(res.data.data));
     } catch (err) {
-      //Handle errors
+      console.log(err.message);
     }
   };
 
@@ -32,21 +32,26 @@ const Connections = () => {
       <div>
         <h1 className="text-bold text-5xl">Connections</h1>
         {connections.map((connection) => {
-          const { firstname, lastname, imageUrl, age, gender, about } =
+          const { _id, firstname, lastname, imageUrl, age, gender, about } =
             connection;
 
           return (
-            <div className="flex  m-4 p-4 rounded-lg bg-base-200">
+            <div key={_id} className="flex  m-4 p-4 rounded-lg bg-base-200">
               <div>
-                <img alt="photo" className="w-20 h-20 rounded-full" src={imageUrl} />
+                <img
+                  alt="photo"
+                  className="w-20 h-20 rounded-full"
+                  src={imageUrl}
+                />
               </div>
               <div className="text-left mx-4">
                 <h2 className="font-bold text-xl">
                   {firstname + " " + lastname}
                 </h2>
-                {age && gender &&<p>{age + " " + gender}</p>}
+                {age && gender && <p>{age + " " + gender}</p>}
                 <p>{about}</p>
               </div>
+              
             </div>
           );
         })}
