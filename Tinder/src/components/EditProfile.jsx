@@ -8,9 +8,9 @@ import { addUser } from "../utils/userSlice";
 const EditProfile = ({ user }) => {
   const [firstname, setFirstname] = useState(user.firstname);
   const [lastname, setLastname] = useState(user.lastname);
-  const [age, setAge] = useState(user.age);
-  const [gender, setGender] = useState(user.gender);
-  const [about, setAbout] = useState(user.about);
+  const [age, setAge] = useState(user.age || "");
+  const [gender, setGender] = useState(user.gender || "");
+  const [about, setAbout] = useState(user.about || "");
   const [imageUrl, setImageUrl] = useState(user.imageUrl);
   const [showToast, setShowToast] = useState(false);
   const [error, seterror] = useState("");

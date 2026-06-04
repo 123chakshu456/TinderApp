@@ -6,11 +6,18 @@ import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 
 const Login = () => {
-  const [email, setEmail] = useState("virat@gmail.com");
-  const [password, setPassword] = useState("Virat@12345");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstname,setFirstname] = useState("");
+  const [lastname, setlastname] = useState("");
+  const [signUpPage, setSignUpPage] = useState(false);
   const [error,setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const handleSignUpSwitch = () => {
+    setSignUpPage((prev) => !prev);
+  };
 
   const handleLogin = async () => {
     try {
@@ -30,10 +37,44 @@ const Login = () => {
     }
   };
 
+  const handleSignUp = async () => {
+    try{
+      const res = await axios.post(
+        BASE_URL + "/signup",
+        { firstname, lastname, email, password },
+        { withCredentials: true }
+      );
+      dispatch(addUser(res.data.data));
+      return navigate("/profile");
+    }
+    catch(err){
+      setError(err?.response?.data || "Something went wrong!!");
+    }
+  }
+
   return (
     <div className="flex-1 flex justify-center items-center mb-60">
       <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
-        <legend className="fieldset-legend">Login</legend>
+        <legend className="fieldset-legend">{signUpPage ? "Sign Up" : "Login"}</legend>
+
+
+        {signUpPage && <>
+        <label className="label">Firstname</label>
+        <input
+          type="text"
+          className="input"
+          value={firstname}
+          onChange={(e) => setFirstname(e.target.value)}
+          placeholder="Enter firstname"
+        />
+        <label className="label">Lastname</label>
+        <input
+          type="text"
+          className="input"
+          value={lastname}
+          onChange={(e) => setlastname(e.target.value)}
+          placeholder="Enter lastname"
+        /></>}
 
         <label className="label">Email: {email}</label>
         <input
@@ -55,9 +96,10 @@ const Login = () => {
 
         <p className="text-red-500">{error}</p>
 
-        <button className="btn btn-neutral mt-4" onClick={handleLogin}>
-          Login
+        <button className="btn btn-neutral mt-4" onClick={signUpPage ? handleSignUp : handleLogin}>
+          {signUpPage ? "Sign Up" : "Login"}
         </button>
+        <div className="m-auto text-xl cursor-pointer" onClick={handleSignUpSwitch}>{signUpPage ? "Already a User - Login here" : "New User? Sign Up here"}</div>
       </fieldset>
     </div>
   );

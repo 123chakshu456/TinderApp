@@ -35,3 +35,9 @@
 - Show toast message on save of profile
 - See all my connections
 - See all my connection requests
+- Feature to accept/reject conenction request
+
+Remaining:
+- Send or ignore the conenction request from feed
+- Sign up Page
+- End to end testing
